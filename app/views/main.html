@@ -1,0 +1,83 @@
+<div class="jumbotron">  
+  <form id="form">
+		<h4>{{ clock.currentTime | date: 'dd/MM/yyyy'}} : {{ clock.currentTime | date:'mediumTime' }} </h4>
+		<div class="form-group">
+		  <label for="InputPlace">Work Place</label>
+		  <input type="text" class="form-control" ng-model="workPlace">
+		</div>
+		<div class="form-group">
+		  <label for="InputStartTime">Start Time</label>
+		  <!--
+		  <input type="time" class="form-control" id="startTime" name="startTime">
+		  -->
+
+		  <!-- Bootstrap timepicker using jquery script--> 
+		  <div class="input-append bootstrap-timepicker">
+				<input id="timepicker2" type="text" class="input-small">
+				<span class="add-on">
+					<i class="icon-time"></i>
+				</span>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="InputFinishTime">Finish Time</label>
+		  <!--       
+		  <input type="time" class="form-control" id="finishTime" name="finishTime">
+		  -->
+
+		  <!-- Bootstrap timepicke using jquery script--> 
+		  <div class="input-append bootstrap-timepicker">
+				<input id="timepicker3" type="text" class="input-small">
+				<span class="add-on">
+					 <i class="icon-time"></i>
+				</span>
+		  </div>
+		</div>
+
+		<button class="btn btn-md btn-success" ng-href="#" ng-click="saveTime()">Add <span class="glyphicon glyphicon-ok"></span></button>
+
+
+		  
+		  
+  </form>
+  <br/>
+  <div ng-controller="ShowlogCtrl">
+	 <table class="table table-bordered">
+		<!--
+		<thead>
+			 <th>WorkPlace</th>
+			 <th>Date</th>
+			 <th>StartTime</th>
+			 <th>FinishTime</th>
+			 <th>TotalHours/Day</th>
+		</thead>
+		-->
+		<tbody ng-repeat="time in timeSave">
+		  <tr>
+			 <td>
+				<address>
+				  <strong>{{ time.workPlace }}</strong><br>
+				  <abbr title="">StartTime:</abbr> {{ time.startTime }}<br>
+				  <abbr title="">FinishTime:</abbr> {{ time.finishTime }}<br>
+				  <abbr title="">Hours/Day:</abbr> {{ time.hoursperday }}
+				</address>          
+				<button ng-click="deleteRec(time.$id)">delete</button> {{ time.$id }}
+			 </td>
+			 <!--
+			 <td>{{ clock.currentTime | date }}</td>
+			 <td>{{ time.startTime }}</td>
+			 <td>{{ time.finishTime }}</td>
+			 <td></td>
+			 -->
+		  </tr>
+		</tbody>
+	 </table>
+  </div>
+</div>
+ 
+<!-- Bootstrap timepicker jQuery scipt--> 
+<script type="text/javascript">
+	$('#timepicker2').timepicker();
+	$('#timepicker3').timepicker();
+</script>
+
